@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Modal from "../common/Modal";
 
 export default function Home({firestore}) {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [wordList, setWordList] = useState([]);
   async function getWords() {
     const wordsCol = collection(firestore, 'words');
