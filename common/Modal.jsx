@@ -15,13 +15,17 @@ export default function Modal({isOpen, setIsOpen, title = "Modal Title", childre
       <div>
         <motion.div
           variants={backdropVariant}
+          initial="closed"
           animate={isOpen ? "open" : "closed"}
           onClick={() => setIsOpen(false)}
           className="fixed top-0 left-0 bg-black bg-opacity-30 w-full h-full"
         ></motion.div>
-        <motion.div variants={modalVariant}
-        animate={isOpen ? "open" : "closed"}
-        className="fixed -top-[5%] left-[5vw] lg:left-[14vw] z-10 mx-auto mt-[20vh] w-[90%] lg:w-[70%] text-slate-900 p-5 bg-slate-50 rounded-lg">
+        <motion.div
+          initial="closed"
+          variants={modalVariant}
+          animate={isOpen ? "open" : "closed"}
+          className="fixed -top-[5%] left-[5vw] lg:left-[14vw] z-10 mx-auto mt-[20vh] w-[90%] lg:w-[70%] text-slate-900 p-5 bg-slate-50 rounded-lg"
+        >
           <div className="w-full flex justify-between">
             <h1 className="text-[32px] font-bold">{title}</h1>
             <button onClick={() => setIsOpen(false)} className="relative group">

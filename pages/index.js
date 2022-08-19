@@ -26,7 +26,7 @@ export default function Home({firestore}) {
         <div className="my-5">
           A collection of words too good to go to waste in a regular dictionary.
         </div>
-        <motion.button onClick={()=>setIsModalOpen(true)} whileHover={{scale: 1.2}} className="fixed right-[2rem] bottom-[3rem]"><BsFillPlusCircleFill className="w-[3rem] h-[3rem]"></BsFillPlusCircleFill></motion.button>
+        <motion.button onClick={()=>setIsModalOpen(true)} whileTap={{scale: 0.8}} whileHover={{scale: 1.2}} className="fixed right-[2rem] bottom-[3rem]"><BsFillPlusCircleFill className="w-[3rem] h-[3rem]"></BsFillPlusCircleFill></motion.button>
         <div className="lg:w-[60%] mx-auto my-20 space-y-5">
           {wordList.map((word, key) => <WordCard word={word} key={key}/>)}
         </div>
