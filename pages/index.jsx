@@ -71,27 +71,27 @@ export default function Home({firestore}) {
           <div className="flex flex-col items-center space-y-3 my-10">
             <div className="grid grid-cols-2 w-[50%]">
               <label  htmlFor="wordName">Word name:</label>
-              <input maxlength="100" className="dark:bg-slate-50 text-slate-900 rounded-md p-1" type="text" name="wordName" id="wordName" />
+              <input maxLength="100" className="dark:bg-slate-50 text-slate-900 rounded-md p-1" type="text" name="wordName" id="wordName" />
             </div>
             <div className="grid grid-cols-2 w-[50%]">
               <div>
                 <label htmlFor="def">Definition:</label>
                 <legend className="text-sm text-slate-500">max. length 100 chars</legend>
               </div>
-              <textarea maxlength="100" className="dark:bg-slate-50 resize-none text-slate-900 rounded-md p-1 h-[5rem]" name="def" id="def" cols="30" rows="10"></textarea>
+              <textarea maxLength="100" className="dark:bg-slate-50 resize-none text-slate-900 rounded-md p-1 h-[5rem]" name="def" id="def" cols="30" rows="10"></textarea>
             </div>
             <div className="grid grid-cols-2 w-[50%]">
               <div>
                 <label  htmlFor="def">Usage/Example:</label>
                 <legend className="text-sm text-slate-500">max. length 100 chars</legend>
               </div>
-              <textarea maxlength="100" className="dark:bg-slate-50 resize-none text-slate-900 rounded-md p-1 h-[5rem]" name="usage" id="usage" cols="30" rows="10"></textarea>
+              <textarea maxLength="100" className="dark:bg-slate-50 resize-none text-slate-900 rounded-md p-1 h-[5rem]" name="usage" id="usage" cols="30" rows="10"></textarea>
             </div>
             <div className="grid grid-cols-2 w-[50%]">
               <div>
                 <label  htmlFor="def">Creator name:</label>
               </div>
-              <input maxlength="100" className="dark:bg-slate-50 text-slate-900 rounded-md p-1" type="text" name="createdBy" id="createdBy" />
+              <input maxLength="100" className="dark:bg-slate-50 text-slate-900 rounded-md p-1" type="text" name="createdBy" id="createdBy" />
             </div>
             <div className="pt-5 flex space-x-3">
               <motion.input 
