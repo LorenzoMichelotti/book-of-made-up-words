@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "firebase": "^9.9.3",
     "framer-motion": "^7.2.0",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "sweetalert2": "^11.4.29"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
