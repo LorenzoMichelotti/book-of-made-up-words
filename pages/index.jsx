@@ -59,12 +59,16 @@ export default function Home() {
     <div className="w-full">
       <div className="mx-auto w-[90%] mt-12">
         <h1 className="text-[24px] font-medium">Book of made up words</h1>
-        <div className="my-5">
+        <div className="my-5 text-slate-400">
           A collection of words too good to go to waste in a regular dictionary.
         </div>
         
         <div className="lg:w-[60%] mx-auto mt-20 mb-10 space-y-5">
-          {wordList.words.map((word, key) => <WordCard word={word} key={key}/>)}
+          {wordList.words.length > 0 ? 
+            wordList.words.map((word, key) => <WordCard word={word} key={key}/>)
+            :
+            <div className="text-center text-lg">There are no words on our records yet... <br /> Press the button with the plus icon bellow to be the first to add a new word.</div>
+          }
         </div>
 
         <ReactPaginate
