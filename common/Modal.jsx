@@ -24,13 +24,13 @@ export default function Modal({isOpen, setIsOpen, title = "Modal Title", childre
           initial="closed"
           variants={modalVariant}
           animate={isOpen ? "open" : "closed"}
-          className="fixed -top-[5%] left-[5vw] lg:left-[14vw] z-10 mx-auto mt-[20vh] w-[90%] lg:w-[70%] text-slate-900 p-5 bg-slate-50 dark:bg-slate-800 dark:text-slate-50 rounded-lg"
+          className="fixed -top-[5%] left-[5vw] lg:left-[14vw] z-10 mx-auto mt-[20vh] w-[90%] lg:w-[70%] text-zinc-900 p-5 bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-50 rounded-lg"
         >
           <div className="w-full pb-3 flex justify-between">
             <h1 className="text-[32px] font-bold">{title}</h1>
             <button onClick={() => setIsOpen(false)} className="relative group">
-              <div className="top-2 -left-8 w-[2rem] h-[2rem] absolute rounded-full group-hover:bg-slate-200 group-hover:dark:bg-slate-600 transition-all duration-200"></div>
-              <AiOutlineClose className="top-4 -left-6 absolute text-slate-800 dark:text-slate-50" />
+              <div className="top-2 -left-8 w-[2rem] h-[2rem] absolute rounded-full group-hover:bg-zinc-200 group-hover:dark:bg-zinc-600 transition-all duration-200"></div>
+              <AiOutlineClose className="top-4 -left-6 absolute text-zinc-800 dark:text-zinc-50" />
             </button>
           </div>
           {children}
