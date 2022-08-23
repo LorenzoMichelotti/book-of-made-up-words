@@ -24,7 +24,7 @@ export default function Modal({isOpen, setIsOpen, title = "Modal Title", childre
           initial="closed"
           variants={modalVariant}
           animate={isOpen ? "open" : "closed"}
-          className="fixed -top-[5%] left-[5vw] lg:left-[14vw] z-10 mx-auto mt-[20vh] w-[90%] lg:w-[70%] text-zinc-900 p-5 bg-zinc-50 dark:bg-zinc-800 dark:text-zinc-50 rounded-lg"
+          className="border-2 border-zinc-700 fixed -top-[5%] left-[5vw] lg:left-[14vw] z-10 mx-auto mt-[20vh] w-[90%] lg:w-[70%] text-zinc-900 p-5 bg-zinc-50 dark:bg-zinc-900 dark:text-zinc-50 rounded-lg"
         >
           <div className="w-full pb-3 flex justify-between">
             <h1 className="text-[32px] font-bold">{title}</h1>

@@ -2,7 +2,7 @@ import {motion} from 'framer-motion'
 
 export default function WordCard({word}) {
     return (
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="border-2 border-slate-700 rounded-lg p-5 flex w-full">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="border-2 border-zinc-700 rounded-lg p-5 flex w-full">
             {/* <img src={""} className="w-[10rem] h-[10rem] mr-5 bg-slate-500 rounded object-cover"></img> */}
             <div className="flex flex-col w-full justify-between">
                 <div className="w-full flex flex-col">
