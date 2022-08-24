@@ -31,9 +31,9 @@ export default function Home() {
   }
 
   async function onSubmit(event) {
+    event.preventDefault();
     if (isLoading) return;
     setIsLoading(true);
-    event.preventDefault();
     const model = {
       "def": event.target.def.value,
       "usage": event.target.usage.value,
