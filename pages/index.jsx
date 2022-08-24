@@ -16,6 +16,7 @@ export default function Home() {
   const perPage = 12;
 
   async function getWords(page = 1) {
+    if (isLoading) return;
     setIsLoading(true);
     const resp = await axios(`${process.env.NEXT_PUBLIC_API}words?page=${page}&perPage=${perPage}`);
     const data = await resp.data;
