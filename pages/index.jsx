@@ -119,7 +119,8 @@ export default function Home() {
       </div>
 
       <Modal title="Bring meaning to a word 🐣" isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
-        <form ref={form} onSubmit={(event) => !isLoading && onSubmit(event)} action="post">
+        <form ref={form} onSubmit={(event) => {
+            if (!isLoading) onSubmit(event)}} action="post">
           <div className="flex flex-col items-center space-y-3 my-10">
             <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
               <label  htmlFor="wordName">Word name:</label>
