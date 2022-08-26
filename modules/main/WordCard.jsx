@@ -13,7 +13,7 @@ export default function WordCard({word}) {
                     </div>
                 </div>
                 <div className="self-end mt-5">
-                    <p>by <a className="underline text-blue-500" href="word.createdBy">{word.createdBy}</a></p>
+                    <p>by <span className="text-blue-400" href="word.createdBy">{word.createdBy}</span></p>
                     <p className="text-slate-500">{new Date(word.createDate.seconds*1000).toLocaleDateString()}</p>
                 </div>
             </div>

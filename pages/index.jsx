@@ -23,6 +23,7 @@ export default function Home() {
     const data = await resp.data;
     setWordList(data);
     setIsLoading(false);
+    window.scrollTo(0, 0);
     return data;
   }
 
@@ -33,7 +34,7 @@ export default function Home() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    
+
     if (isSubmitting) return;
 
     setIsSubmitting(true);
@@ -81,9 +82,15 @@ export default function Home() {
   return (
     <div className="w-full">
       <div className="mx-auto w-[90%] mt-12">
-        <h1 className="text-[24px] font-medium">Book of made up words</h1>
-        <div className="my-5 text-zinc-400">
-          A collection of words too good to go to waste in a regular dictionary.
+        <div className="flex items-center">
+          <span className="mt-1 text-[64px]">🔡</span>
+          <div>
+            <h1 className="text-[24px] font-medium">Book of made up words</h1>
+            <legend className="text-sm text-zinc-400">By Lorenzo Michelotti</legend>
+          </div>
+        </div>
+        <div className="ml-3 my-5 text-zinc-400">
+          A collection of words that do not fit a regular dictionary.
         </div>
         
         <div className="lg:w-[60%] mx-auto mt-20 mb-10 space-y-5">
@@ -113,11 +120,11 @@ export default function Home() {
         pageLinkClassName="bg-zinc-800 font-bold p-2 px-3 rounded-lg text-center"
         previousLinkClassName="bg-zinc-800 font-bold p-2 px-3 rounded-lg text-center"
         nextLinkClassName="bg-zinc-800 font-bold p-2 px-3 rounded-lg text-center"
-        activeLinkClassName="bg-zinc-700 font-bold text-blue-500 p-2 px-3 rounded-lg text-center"
+        activeLinkClassName="bg-zinc-700 font-bold text-blue-400 p-2 px-3 rounded-lg text-center"
         />
 
-        <motion.button onClick={()=>setIsModalOpen(true)} whileTap={{scale: 0.8}} whileHover={{scale: 1.2}} className="fixed right-[2rem] bottom-[5rem]">
-          <BsFillPlusCircleFill size={50}></BsFillPlusCircleFill>
+        <motion.button onClick={()=>setIsModalOpen(true)} whileTap={{scale: 0.8}} whileHover={{scale: 1.2}} className="fixed right-[3rem] bottom-[5rem]">
+          <BsFillPlusCircleFill size={64}></BsFillPlusCircleFill>
         </motion.button>
 
       </div>
