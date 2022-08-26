@@ -116,7 +116,7 @@ export default function Home() {
         pageCount={Math.ceil(wordList.count/perPage)}
         previousLabel="previous"
         renderOnZeroPageCount={null}
-        className="flex space-x-1 mx-auto w-full justify-center mb-[10rem]"
+        className="flex space-x-1 mx-auto w-full justify-center mb-[3rem]"
         pageLinkClassName="bg-zinc-800 font-bold p-2 px-3 rounded-lg text-center"
         previousLinkClassName="bg-zinc-800 font-bold p-2 px-3 rounded-lg text-center"
         nextLinkClassName="bg-zinc-800 font-bold p-2 px-3 rounded-lg text-center"
@@ -126,6 +126,14 @@ export default function Home() {
         <motion.button onClick={()=>setIsModalOpen(true)} whileTap={{scale: 0.8}} whileHover={{scale: 1.2}} className="fixed right-[3rem] bottom-[5rem]">
           <BsFillPlusCircleFill size={64}></BsFillPlusCircleFill>
         </motion.button>
+
+        <div className="flex w-full justify-center mt-[10rem] mb-[3rem] text-zinc-400">
+          {/* footer */}
+          <p>By Lorenzo Michelotti a Graduate Software Engineer -</p>
+          <a className="hover:underline text-blue-400 mx-1" href="https://www.linkedin.com/in/lorenzo-michelotti-b1b4441a7/">Linkedin</a>
+          /
+          <a className="hover:underline text-blue-400 ml-1" href="https://github.com/LorenzoMichelotti">Github</a>
+        </div>
 
       </div>
 
