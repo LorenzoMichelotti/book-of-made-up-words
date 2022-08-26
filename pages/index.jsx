@@ -8,6 +8,11 @@ import Swal from 'sweetalert2'
 import ReactPaginate from 'react-paginate';
 import {ImSpinner2} from 'react-icons/im'
 
+const swalStyle = {
+  color: 'zinc-50',
+  background: 'zinc-900'
+}
+
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wordList, setWordList] = useState({words: [], count: 0});
@@ -28,7 +33,7 @@ export default function Home() {
   }
 
   function validateFormField(value) {
-    if (!value?.trim()) Swal.fire('Cannot submit with empty fields.', '', 'error')
+    if (!value?.trim()) Swal.fire({title: 'Cannot submit with empty fields.', icon: 'error', color: 'white', background: '#18181B'})
     return value;
   }
 
@@ -37,7 +42,6 @@ export default function Home() {
 
     if (isSubmitting) return;
 
-    setIsSubmitting(true);
     const model = {
       "def": event.target.def.value,
       "usage": event.target.usage.value,
@@ -52,20 +56,26 @@ export default function Home() {
     )
       return;
 
+    setIsSubmitting(true);
+
     const resp = await axios.post(`${process.env.NEXT_PUBLIC_API}addWord`, model);
     const data = await resp.data;
     console.log(data);
 
+    setIsSubmitting(false);
+
     if (!data.success) { 
-      Swal.fire( 'Oh no!', data.code, 'error' ); 
+      Swal.fire({title: 'Oh no!',  html: data.code, icon: 'error', color: 'white', background: '#18181B' }); 
       return;
     }
     
-    Swal.fire(
-      'Yes!',
-      data.message,
-      'success'
-    )
+    Swal.fire({
+      title: 'Yes!',
+      html: data.message,
+      icon: 'success',
+      color: 'white', 
+      background: '#18181B'
+    })
     form.current.reset();
     setIsModalOpen(false);
     getWords();
