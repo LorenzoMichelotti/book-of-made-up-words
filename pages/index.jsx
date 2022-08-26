@@ -12,6 +12,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wordList, setWordList] = useState({words: [], count: 0});
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useRef();
   const perPage = 12;
 
@@ -32,7 +33,10 @@ export default function Home() {
 
   async function onSubmit(event) {
     event.preventDefault();
-    setIsLoading(true);
+    
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
     const model = {
       "def": event.target.def.value,
       "usage": event.target.usage.value,
