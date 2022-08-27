@@ -17,7 +17,7 @@ export default function Home() {
         <WordsListDisplay></WordsListDisplay>          
         <Footer></Footer>
 
-        <motion.button name="AddWordButton" onClick={()=>setIsModalOpen(true)} whileTap={{scale: 0.8}} whileHover={{scale: 1.2}} className="fixed right-[3rem] bottom-[5rem]">
+        <motion.button name="AddWordButton" onClick={()=>setIsModalOpen(true)} whileTap={{scale: 0.8}} whileHover={{scale: 1.2}} className="fixed right-[2rem] lg:right-[6rem] bottom-[8rem]">
           <BsFillPlusCircleFill size={64}></BsFillPlusCircleFill>
         </motion.button>
 

@@ -59,26 +59,26 @@ export default function AddWordForm({setIsModalOpen}: {setIsModalOpen: Dispatch<
     return (
         <form ref={formRef} onSubmit={(event) => {
             onSubmit(event)}} action="post">
-            <div className="flex flex-col items-center space-y-3 my-10">
-            <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
+            <div className="flex flex-col items-center space-y-3 lg:my-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 w-[90%] md:w-[70%]">
                 <label  htmlFor="wordName">Word name:</label>
                 <input maxLength={100} className="dark:bg-zinc-50 text-zinc-900 rounded-md p-1" type="text" name="wordName" id="wordName" />
             </div>
-            <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 w-[90%] md:w-[70%]">
                 <div>
                 <label htmlFor="def">Definition:</label>
                 <legend className="text-sm text-zinc-500">max. length 100 chars</legend>
                 </div>
                 <textarea maxLength={100} className="dark:bg-zinc-50 resize-none text-zinc-900 rounded-md p-1 h-[5rem]" name="def" id="def" cols={30} rows={10}></textarea>
             </div>
-            <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 w-[90%] md:w-[70%]">
                 <div>
                 <label  htmlFor="def">Usage/Example:</label>
                 <legend className="text-sm text-zinc-500">max. length 100 chars</legend>
                 </div>
                 <textarea maxLength={100} className="dark:bg-zinc-50 resize-none text-zinc-900 rounded-md p-1 h-[5rem]" name="usage" id="usage" cols={30} rows={10}></textarea>
             </div>
-            <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 w-[90%] md:w-[70%]">
                 <div>
                 <label  htmlFor="def">Creator name:</label>
                 </div>
