@@ -45,6 +45,7 @@ export default function WordsListDisplay() {
                 className="relative"
                 >
                     <input 
+                    name="searchButton"
                     className="bg-[#00A6ED] hover:brightness-105 transition-colors p-2 px-5 mt-2 rounded-md" 
                     type="submit" 
                     value="" 
