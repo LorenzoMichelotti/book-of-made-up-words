@@ -1,6 +1,7 @@
 import {motion} from 'framer-motion'
+import { Word } from '../../common/models/Words'
 
-export default function WordCard({word}) {
+export default function WordCard({word}: {word: Word}) {
     return (
         <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="border-2 border-zinc-700 rounded-lg p-5 flex w-full">
             {/* <img src={""} className="w-[10rem] h-[10rem] mr-5 bg-slate-500 rounded object-cover"></img> */}
@@ -13,7 +14,7 @@ export default function WordCard({word}) {
                     </div>
                 </div>
                 <div className="self-end mt-5">
-                    <p>by <span className="text-blue-400" href="word.createdBy">{word.createdBy}</span></p>
+                    <p>by <span className="text-blue-400">{word.createdBy}</span></p>
                     <p className="text-slate-500">{new Date(word.createDate.seconds*1000).toLocaleDateString()}</p>
                 </div>
             </div>

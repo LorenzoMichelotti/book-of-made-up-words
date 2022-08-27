@@ -1,71 +1,65 @@
 import {BsFillPlusCircleFill} from "react-icons/bs"
 import { motion } from "framer-motion"
 import WordCard from "../modules/main/WordCard"
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, MutableRefObject, FormEvent } from "react";
 import Modal from "../common/Modal";
-import axios from "axios";
+import axios, { AxiosPromise, AxiosResponse } from "axios";
 import Swal from 'sweetalert2'
 import ReactPaginate from 'react-paginate';
 import {ImSpinner2} from 'react-icons/im'
-
-const swalStyle = {
-  color: 'zinc-50',
-  background: 'zinc-900'
-}
+import Response from "../common/models/Response";
+import { Word, WordList } from "../common/models/Words";
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [wordList, setWordList] = useState({words: [], count: 0});
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const form = useRef();
-  const perPage = 12;
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [wordList, setWordList] = useState<WordList>({words: [], count: 0});
+  const form = useRef<HTMLFormElement>();
+  const perPage: number = 12;
 
-  async function getWords(page = 1) {
+  async function getWords(page: number = 1): Promise<WordList> {
     if (isLoading) return;
     setIsLoading(true);
-    const resp = await axios(`${process.env.NEXT_PUBLIC_API}words?page=${page}&perPage=${perPage}`);
-    const data = await resp.data;
-    setWordList(data);
+    const { data, status } = await axios.get<WordList>(`${process.env.NEXT_PUBLIC_API}words?page=${page}&perPage=${perPage}`);
+    setWordList(data as WordList);
     setIsLoading(false);
     window.scrollTo(0, 0);
     return data;
   }
 
-  function validateFormField(value) {
+  function validateFormField(value: string): string {
     if (!value?.trim()) Swal.fire({title: 'Cannot submit with empty fields.', icon: 'error', color: 'white', background: '#18181B'})
     return value;
   }
 
-  async function onSubmit(event) {
+  async function onSubmit(event: FormEvent): Promise<void> {
     event.preventDefault();
 
     if (isSubmitting) return;
 
-    const model = {
-      "def": event.target.def.value,
-      "usage": event.target.usage.value,
-      "createdBy": event.target.createdBy.value,
-      "wordName": event.target.wordName.value,
+    const model: Word = {
+      def: event.target['def'].value,
+      usage: event.target['usage'].value,
+      createdBy: event.target['createdBy'].value,
+      wordName: event.target['wordName'].value,
     }
     
     if (!validateFormField(model.wordName) ||
         !validateFormField(model.def) ||
         !validateFormField(model.usage) ||
         !validateFormField(model.createdBy)
-    )
-      return;
+    ) return;
 
     setIsSubmitting(true);
 
-    const resp = await axios.post(`${process.env.NEXT_PUBLIC_API}addWord`, model);
-    const data = await resp.data;
-    console.log(data);
+    const { data, status } = await axios.post<Response>(`${process.env.NEXT_PUBLIC_API}addWord`, model);
+    console.log(data, status);
 
     setIsSubmitting(false);
 
     if (!data.success) { 
-      Swal.fire({title: 'Oh no!',  html: data.code, icon: 'error', color: 'white', background: '#18181B' }); 
+      Swal.fire({title: 'Oh no!',  html: data.code.toString(), icon: 'error', color: 'white', background: '#18181B' }); 
       return;
     }
     
@@ -133,7 +127,7 @@ export default function Home() {
         activeLinkClassName="bg-zinc-700 font-bold text-blue-400 p-2 px-3 rounded-lg text-center"
         />
 
-        <motion.button onClick={()=>setIsModalOpen(true)} whileTap={{scale: 0.8}} whileHover={{scale: 1.2}} className="fixed right-[3rem] bottom-[5rem]">
+        <motion.button name="AddWordButton" onClick={()=>setIsModalOpen(true)} whileTap={{scale: 0.8}} whileHover={{scale: 1.2}} className="fixed right-[3rem] bottom-[5rem]">
           <BsFillPlusCircleFill size={64}></BsFillPlusCircleFill>
         </motion.button>
 
@@ -153,27 +147,27 @@ export default function Home() {
           <div className="flex flex-col items-center space-y-3 my-10">
             <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
               <label  htmlFor="wordName">Word name:</label>
-              <input maxLength="100" className="dark:bg-zinc-50 text-zinc-900 rounded-md p-1" type="text" name="wordName" id="wordName" />
+              <input maxLength={100} className="dark:bg-zinc-50 text-zinc-900 rounded-md p-1" type="text" name="wordName" id="wordName" />
             </div>
             <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
               <div>
                 <label htmlFor="def">Definition:</label>
                 <legend className="text-sm text-zinc-500">max. length 100 chars</legend>
               </div>
-              <textarea maxLength="100" className="dark:bg-zinc-50 resize-none text-zinc-900 rounded-md p-1 h-[5rem]" name="def" id="def" cols="30" rows="10"></textarea>
+              <textarea maxLength={100} className="dark:bg-zinc-50 resize-none text-zinc-900 rounded-md p-1 h-[5rem]" name="def" id="def" cols={30} rows={10}></textarea>
             </div>
             <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
               <div>
                 <label  htmlFor="def">Usage/Example:</label>
                 <legend className="text-sm text-zinc-500">max. length 100 chars</legend>
               </div>
-              <textarea maxLength="100" className="dark:bg-zinc-50 resize-none text-zinc-900 rounded-md p-1 h-[5rem]" name="usage" id="usage" cols="30" rows="10"></textarea>
+              <textarea maxLength={100} className="dark:bg-zinc-50 resize-none text-zinc-900 rounded-md p-1 h-[5rem]" name="usage" id="usage" cols={30} rows={10}></textarea>
             </div>
             <div className="grid grid-cols-2 w-[90%] md:w-[70%]">
               <div>
                 <label  htmlFor="def">Creator name:</label>
               </div>
-              <input maxLength="100" className="dark:bg-zinc-50 text-zinc-900 rounded-md p-1" type="text" name="createdBy" id="createdBy" />
+              <input maxLength={100} className="dark:bg-zinc-50 text-zinc-900 rounded-md p-1" type="text" name="createdBy" id="createdBy" />
             </div>
             <div className="pt-5 flex space-x-3">
               <motion.input 
@@ -184,7 +178,7 @@ export default function Home() {
               <motion.input 
               whileTap={{scale: 0.9, borderWidth: 0}}
               className="bg-blue-500 hover:bg-blue-400 border-2 border-blue-400 transition-colors py-4 px-10 rounded-md" 
-              type="submit" 
+              type="submit"
               value="Confirm" />
             </div>
           </div>
