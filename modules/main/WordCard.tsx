@@ -9,12 +9,12 @@ export default function WordCard({word}: {word: Word}) {
                     <h1 className="text-[32px] font-bold">{word.wordName}</h1>
                     <div className="lg:mx-[20%] mt-5">
                         <p className="mt-2">Def.: {word.def}</p>
-                        <p className="mt-2">Usage: &quot;{word.usage}&quot;.</p>
+                        <p className="mt-2">Usage: {word.usage}</p>
                     </div>
                 </div>
-                <div className="self-end mt-5">
-                    <p>by <span className="text-blue-400">{word.createdBy}</span></p>
-                    <p className="text-slate-500">{new Date(word.createDate.seconds*1000).toLocaleDateString()}</p>
+                <div className="self-end text-right mt-5">
+                    <p className="text-slate-50">{word.createdBy}</p>
+                    <p className="text-slate-400">{new Date(word.createDate.seconds*1000).toLocaleDateString()}</p>
                 </div>
             </div>
         </motion.div>

@@ -6,6 +6,15 @@ import { WordList } from "../../common/models/Words";
 import WordCard from "./WordCard";
 import {motion} from 'framer-motion';
 import { BsSearch } from "react-icons/bs";
+import dynamic from "next/dynamic";
+
+const DynamicCard = dynamic(() => import('./WordCard'), {
+    loading: () => <div className='flex flex-col w-full h-[45vh]'>
+    <div className='m-auto animate-spin'>
+      <ImSpinner2 size={50}></ImSpinner2>
+    </div>
+  </div>,
+})
 
 export default function WordsListDisplay() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -37,7 +46,7 @@ export default function WordsListDisplay() {
         <div className="w-full lg:w-[60%] mx-auto lg:mt-20 mb-10 space-y-5">
 
             <form onSubmit={(formEvent) => {formEvent.preventDefault(); getWords(1, formEvent.target['search'].value);}} className="space-x-3 w-full flex items-center justify-center mb-10">
-                <input placeholder="Search database" maxLength={100} className="bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 rounded-md p-2 px-5 w-[20rem]" type="text" name="search" id="createdBy" />
+                <input placeholder="Search database" maxLength={100} className="bg-zinc-50 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 rounded-md p-2 px-5 w-[20rem]" type="text" name="search" id="searchInput" />
 
                 <motion.div 
                 whileTap={{scale: 0.9}}
@@ -57,7 +66,7 @@ export default function WordsListDisplay() {
             </form>
 
             {!isLoading && wordList.words.length > 0 ? 
-              wordList.words.map((word, key) => <WordCard word={word} key={key}/>)
+              wordList.words.map((word, key) => <DynamicCard word={word} key={key}/>)
               :
               !isLoading ?
                 <div className="text-center text-lg py-[5rem] justify-center align-middle items-center self-center">There are no words here yet.</div>

@@ -1,0 +1,45 @@
+{
+    "words": [
+        {
+            "createDate": {
+                "seconds": 1661799022,
+                "nanoseconds": 0
+            },
+            "def": "Expressão. Usada para definir que cada um tem seus interesses, problemas e coisas no geral",
+            "usage": "\"Esse tipo de coisa é cada um com seu cada qual ta ligado?\"",
+            "wordName": "Cada um com seu cada qual",
+            "createdBy": "Renato Cesar "
+        },
+        {
+            "def": "teste em producao : )",
+            "createDate": {
+                "seconds": 1661629482,
+                "nanoseconds": 567000000
+            },
+            "usage": "teste",
+            "wordName": "Teste",
+            "createdBy": "Lolo"
+        },
+        {
+            "wordName": "Sagu",
+            "usage": "That cat looks like a sagu.",
+            "def": "A fat and fluffy cat.",
+            "createdBy": "Lolo",
+            "createDate": {
+                "seconds": 1661621535,
+                "nanoseconds": 925000000
+            }
+        },
+        {
+            "usage": "Can you pass me the bereguejohnson?",
+            "def": "A thing",
+            "createdBy": "Lolo",
+            "createDate": {
+                "seconds": 1661567983,
+                "nanoseconds": 334000000
+            },
+            "wordName": "Bereguejohnson"
+        }
+    ],
+    "count": 4
+}

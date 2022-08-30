@@ -1,9 +1,8 @@
-describe('WordCreationModal', () => {
-  it('Should open, try to submit and close a modal with the word creation form', () => {
+describe('Search', () => {
+  it('Should return a searched word', () => {
     cy.visit('http://localhost:3000/');
     
     cy.intercept('GET', 'http://localhost:3001/words?page=1&perPage=12').as('words')
-    cy.wait('@words')
 
     cy.get('h1').contains('Book of made up words');
     
@@ -11,9 +10,15 @@ describe('WordCreationModal', () => {
     
     cy.get('input[name="searchButton"]').click();
     
-    cy.wait('@words')
-    
     cy.get('h1').contains('Bereguejohnson');
+    
+    cy.wait('@words')
+  })
+})
+
+describe('WordCreationModal', () => {
+  it('Should open, try to submit and close a modal with the word creation form', () => {
+    cy.visit('http://localhost:3000/');
     
     cy.get('button[name*="AddWordButton"]').click();
 
