@@ -9,11 +9,8 @@ import { BsSearch } from "react-icons/bs";
 import dynamic from "next/dynamic";
 
 const DynamicCard = dynamic(() => import('./WordCard'), {
-    loading: () => <div className='flex flex-col w-full h-[45vh]'>
-    <div className='m-auto animate-spin'>
-      <ImSpinner2 size={50}></ImSpinner2>
-    </div>
-  </div>,
+  ssr: false,
+  loading: () => <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></motion.div>
 })
 
 export default function WordsListDisplay() {
@@ -71,12 +68,14 @@ export default function WordsListDisplay() {
               !isLoading ?
                 <div className="text-center text-lg py-[5rem] justify-center align-middle items-center self-center">There are no words here yet.</div>
                 :
-                <div className='flex flex-col w-full h-[45vh]'>
-                  <div className='m-auto animate-spin'>
-                    <ImSpinner2 size={50}></ImSpinner2>
-                  </div>
-                </div>
+                <>
+                  <div className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
+                  <div className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
+                  <div className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
+                  <div className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
+                </>
             }
+
             <ReactPaginate
             breakLabel="..."
             nextLabel="next"
