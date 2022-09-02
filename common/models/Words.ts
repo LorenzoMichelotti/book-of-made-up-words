@@ -3,13 +3,13 @@ interface CreateDate {
 }
 
 export interface Word {
-    id: string,
+    id?: string,
     def: string,
     usage: string,
     createdBy: string,
     wordName: string,
     createDate?: CreateDate,
-    likes: number
+    likes?: number
 };
   
 export interface WordList {
