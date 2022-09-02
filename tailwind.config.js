@@ -10,6 +10,9 @@ module.exports = {
       colors: {
         brand: {
           500: "#00A6ED"
+        },
+        bg: {
+          500: "#181818"
         }
       }
     },

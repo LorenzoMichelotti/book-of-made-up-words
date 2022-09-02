@@ -2,15 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import ReactPaginate from "react-paginate";
-import { WordList } from "../../common/models/Words";
-import WordCard from "./WordCard";
-import {motion} from 'framer-motion';
+import { WordList, wordsXlikes } from "../../common/models/Words";
+import {AnimatePresence, motion} from 'framer-motion';
 import { BsSearch } from "react-icons/bs";
 import dynamic from "next/dynamic";
 
 const DynamicCard = dynamic(() => import('./WordCard'), {
   ssr: false,
-  loading: () => <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></motion.div>
+  loading: () => <motion.div exit={{scaleY: 0.1, scaleX: 0.5, opacity: 0}} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></motion.div>
 })
 
 export default function WordsListDisplay() {
@@ -20,7 +19,6 @@ export default function WordsListDisplay() {
 
     async function getWords(page: number = 1, search?: string): Promise<WordList> {
         if (isLoading) return;
-        console.log(search)
         setIsLoading(true);
         const { data, status } = search ? await axios.get<WordList>(`${process.env.NEXT_PUBLIC_API}get_word_by_name?page=${page}&perPage=${perPage}&search=${search}`) 
                                         : 
@@ -62,19 +60,21 @@ export default function WordsListDisplay() {
                 </motion.div>
             </form>
 
-            {!isLoading && wordList.words.length > 0 ? 
-              wordList.words.map((word, key) => <DynamicCard word={word} key={key}/>)
-              :
-              !isLoading ?
-                <div className="text-center text-lg py-[5rem] justify-center align-middle items-center self-center">There are no words here yet.</div>
+            <AnimatePresence>
+              {!isLoading && wordList.words.length > 0 ? 
+                wordList.words.map((word, key) => <DynamicCard word={word} key={key}/>)
                 :
-                <>
-                  <div className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
-                  <div className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
-                  <div className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
-                  <div className="bg-zinc-800 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
-                </>
-            }
+                !isLoading ?
+                  <div className="text-center text-lg py-[5rem] justify-center align-middle items-center self-center">There are no words here yet.</div>
+                  :
+                  <>
+                    <div className="bg-zinc-800 opacity-20 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
+                    <div className="bg-zinc-800 opacity-20 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
+                    <div className="bg-zinc-800 opacity-20 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
+                    <div className="bg-zinc-800 opacity-20 animate-pulse rounded-lg p-5 h-[16rem] flex w-full"></div>
+                  </>
+              }
+            </AnimatePresence>
 
             <ReactPaginate
             breakLabel="..."

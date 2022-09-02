@@ -62,7 +62,7 @@ export default function AddWordForm({setIsModalOpen}: {setIsModalOpen: Dispatch<
             <div className="flex flex-col items-center space-y-3 lg:my-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 w-[90%] md:w-[70%]">
                 <label  htmlFor="wordName">Word name:</label>
-                <input maxLength={100} className="dark:bg-zinc-50 text-zinc-900 rounded-md p-1" type="text" name="wordName" id="wordName" />
+                <input maxLength={100} className="dark:bg-zinc-50 text-bg-500 rounded-md p-1" type="text" name="wordName" id="wordName" />
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 w-[90%] md:w-[70%]">
                 <div>
